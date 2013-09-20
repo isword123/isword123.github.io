@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Zhijian Blog
+tagline: 让所有美丽从此也不再凋零
 ---
 {% include JB/setup %}
 
