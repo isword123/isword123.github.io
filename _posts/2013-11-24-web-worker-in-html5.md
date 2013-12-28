@@ -70,7 +70,7 @@ window.postMessage(arrayBuffer, targetOrigin, [arrayBuffer]);
 
 子的 Web Worker 必须跟父级处在同一个域名下，不可跨域；URI 的路径是相对于父级 worker的位置的
 
-###内联的 Web Worker
+####内联的 Web Worker
 
 例子：
 
@@ -102,20 +102,16 @@ Javascript 错误对象包含了
 示例代码：
 
 {% highlight javascript %}
-    function onError(e) {
-        document.getElementById('error').textContent = [
-        'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
-        ].join('');
-    }
+function onError(e) {
+    document.getElementById('error').textContent = [
+    'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
+    ].join('');
+}
 
-    var worker = new Worker('workerWithError.js');
-    worker.addEventListener('error', onError, false);
-    worker.postMessage(); // Start worker without a message.
+var worker = new Worker('workerWithError.js');
+worker.addEventListener('error', onError, false);
+worker.postMessage(); // Start worker without a message.
 {% endhighlight %}  
-
-####PS
-worker使用时必须保持同源
-使用场景
 
 ####原文
 > http://www.html5rocks.com/en/tutorials/workers/basics/

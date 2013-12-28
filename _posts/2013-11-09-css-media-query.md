@@ -3,7 +3,7 @@ layout: post
 title: "CSS Media Query"
 description: ""
 category: 'Learning'
-tags: ['Learing', 'CSS']
+tags: ['Learning', 'CSS']
 ---
 {% include JB/setup %}
 

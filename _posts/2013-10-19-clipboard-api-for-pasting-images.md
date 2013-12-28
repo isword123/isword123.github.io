@@ -3,7 +3,7 @@ layout: post
 title: "Clipboard API For Pasting Images"
 description: "New API learning in HTML5"
 category: 'Learning'
-tags: ['Learing', 'HTML5']
+tags: ['Learning', 'HTML5']
 ---
 {% include JB/setup %}
 
