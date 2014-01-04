@@ -26,24 +26,27 @@ tags: ['Learning', 'iOS']
 在使用某个特性前，先检查特性是否存在  
 <br />
 
-####使用新的\.\.\.
+####使用新的
 * 框架和类
-      可选择的框架（设置框架为可选的）(如果涉及到新的标志和新的类，需要在使用前检查该名字或对应的部分是否为空，eg: if (!kName != nil)    
+      可选择的框架（设置框架为可选的）(如果涉及到新的标志和新的类，需要在使用前检查该名字或对应的部分是否为空，eg: `if (!kName != nil)`    
 * 方法的检查： 
-      respondToSelector  
+      `respondToSelector`  
 * 是否具有某种特性或能力：
-      eg: [MFMailComposeViewController canSendMail]，有许多检测放在类方法中  
+      eg: `[MFMailComposeViewController canSendMail]`，有许多检测放在类方法中  
       还有：[CMMotionActivityManager isActivityAvailable]
 * 设计
-      版本检测， NSFoundationVersionNumber  
+      版本检测， `NSFoundationVersionNumber`  
 * 架构
-      不同的 CPU 对应不同的代码，eg: #if __LP64__ #else  #endif （检测是否是 64 位处理器）
+      不同的 `CPU` 对应不同的代码，eg: `#if __LP64__ #else  #endif` （检测是否是 64 位处理器）
 <br />
 
 ####特性检测需要注意的地方
 
 尽量不要到处使用 if else 的检测，否则会导致代码很乱而且比较难维护，尽量把这些检测封装起来，可用的方式有 集群（cluster），数据源（data source），策略 (category）。  
-* 类集群：指只有一个 @interface，但是对应有多个 @implementation  
+
+####解决方法
+
+* 类集群：指只有一个 `@interface`，但是对应有多个 `@implementation`  
 
       这种方式在 cocoa 中很常见，可以把特性检测封装在类里，之后也可以很方便地把不需要的代码移除掉  
       (创建一个类方法来获取真正需要的类实例） 
