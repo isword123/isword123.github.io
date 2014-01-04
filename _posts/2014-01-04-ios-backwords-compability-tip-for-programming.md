@@ -1,0 +1,58 @@
+---
+layout: post
+title: "iOS backwords compability tip for programming"
+description: ""
+category: 'Learning'
+tags: ['Learning', 'iOS']
+---
+{% include JB/setup %}
+
+在使用 iOS 新特性的时候如何保证对老版本的支持呢？以下会介绍在使用 iOS7 新特性的时候如何保持对 iOS6 以及更低版本的支持。
+
+主要包括了通过什么来进行特性检测和保持向后兼容时的方法
+
+<br />
+####首先，你需要使用新的 SDK，即 iOS7 的SDK，并且指定部署目标 
+
+#####基础的SDK：
+* 技术性的基础
+* 包含了所有的特性集合
+* 会被编译到 APP 的二进制文件里
+* 应该是最新的 SDK
+<br />
+
+#####部署目标：
+* 指定最小需要支持的系统版本
+
+在使用某个特性前，先检查特性是否存在  
+<br />
+
+####使用新的...
+* 框架和类
+      可选择的框架（设置框架为可选的）(如果涉及到新的标志和新的类，需要在使用前检查该名字或对应的部分是否为空，eg: if (!kName != nil)    
+* 方法的检查： 
+      respondToSelector  
+* 是否具有某种特性或能力：
+      eg: [MFMailComposeViewController canSendMail]，有许多检测放在类方法中  
+      还有：[CMMotionActivityManager isActivityAvailable]
+* 设计
+      版本检测， NSFoundationVersionNumber  
+* 架构
+      不同的 CPU 对应不同的代码，eg: #if __LP64__ #else  #endif （检测是否是 64 位处理器）
+<br />
+
+####特性检测需要注意的地方
+
+尽量不要到处使用 if else 的检测，否则会导致代码很乱而且比较难维护，尽量把这些检测封装起来，可用的方式有 集群（cluster），数据源（data source），策略 (category）。  
+* 类集群：指只有一个 @interface，但是对应有多个 @implementation  
+      这种方式在 cocoa 中很常见，可以把特性检测封装在类里，之后也可以很方便地把不需要的代码移除掉  
+      (创建一个类方法来获取真正需要的类实例） 
+
+* 数据源： 定义一个实现了某种 delegate（接口）的类，相当与面向接口编程的方式  
+
+* 策略：增加方法到默认的类中或者把特性检测放到某个方法里，相当于重新定义一个类似接口，在接口中做特性检测
+      之后可通过 Xcode 的 refactor 功能把接口名字改成本来的名字即可移除该策略
+<br />
+
+> 
+> [Tech Talks](https://developer.apple.com/tech-talks/videos/index.php?id=5)
