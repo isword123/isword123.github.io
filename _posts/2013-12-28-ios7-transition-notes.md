@@ -2,7 +2,7 @@
 layout: post
 title: "iOS7 Transition Notes"
 description: "Record notes for transitioning to iOS7"
-category: 'Leanring'
+category: 'Learning'
 tags: ['Learning', 'iOS', 'iOS7']
 ---
 {% include JB/setup %}
